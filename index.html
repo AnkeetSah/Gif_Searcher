@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gif_Search_App</title>
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+<link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+<link href="https:fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+     <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+       
+        .container{
+            width:100%;
+            height: auto;
+            /* height: 100vh; */
+            background: #70e1f5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+          height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+           
+        }
+        .form{
+             margin-top: 50px;
+             margin-top: 80px;
+            /* width: 70%; */
+            display: flex;
+            justify-content: space-evenly;
+            height: 40px;
+            align-items: flex-start;
+             background-color: aliceblue;
+             height: 80px;
+             align-items: center;
+             width: 520px;
+             border-radius: 30px;
+             background: #C9FFBF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFAFBD, #C9FFBF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        input[type=text],input[type=submit]{
+            padding: 10px;
+            border-radius: 20px;
+
+        } 
+        input[type=text]{
+            width: 320px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            background: transparent;
+
+        }
+
+        input[type=submit]{
+            background: #00C9FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+font-size: large;
+font-weight: bolder;
+        }
+        .gif{
+            width: 85%;
+           padding-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .gifelem{
+            width: 300px;
+            height: 300px;
+            margin-bottom: 10px;
+            background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b6e0b072897469.5bf6e79950d23.gif');
+            background-size: 100% 100%;
+        }
+
+
+
+        .images{
+            border-radius: 5%;
+            margin-bottom: 10px;
+        }
+       
+                @media only screen and (max-width: 550px){
+            .gif{
+                flex-direction: column;
+                justify-content: space-between;
+                margin-top: 50px;
+            }
+            .gifelem{
+                width: 100%;
+                    margin-bottom: 30px;
+                   
+            }
+            .images{
+                width: 100%;
+            }
+            input[type=text]{
+               width: 70%
+               
+            }
+
+            .form{
+                display: flex;
+                width: 95%;
+                justify-content: space-evenly;
+                margin-top: 80px;
+                padding: 5px;
+                align-items: center;
+                margin-bottom: -50px;
+            }
+
+        }
+        .select{
+            position: absolute;
+            top: 30px;
+           
+        }
+        label{
+            font-size: x-large;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-left: 10px;
+            border-bottom:1px solid transparent;
+             text-decoration:none;
+            transition:all .5s ease-in;
+            border-bottom:2px solid transparent;
+            padding: 5px;
+            background-color: #2098cf;
+            border-radius: 20px;
+            background: #3D7EAA;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFE47A, #3D7EAA);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFE47A, #3D7EAA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        label:hover{
+            border-bottom: 2px solid;
+            
+        }
+     </style>
+</head>
+<body>
+    <div class="container">
+         <div class="select">
+           <label for="gif" id="gify">GIFS</label> <input type="radio" name="choose" id="gif" onchange="del()">
+           <label for="sticker">Stickers</label> <input type="radio" name="choose" id="sticker" onchange="del()">
+         </div>
+       <div class="form">
+            <input type="text" name="" id="input" placeholder="Enter" onchange="del()">
+            <input type="submit" id="btn" value="submit" > </button>
+        </div>
+        
+        <div class="gif">
+            <!-- <div class="gifelem"></div>
+            <div class="gifelem"></div>
+            <div class="gifelem"></div>
+            <div class="gifelem"></div>
+            <div class="gifelem"></div> -->
+          </div>
+    </div>
+
+     
+    <script>
+      
+      const setup=document.querySelector(".container");
+      const gif=document.querySelector(".gif" );
+       const search=document.querySelector("input[type=text]");
+      const button=document.querySelector("#btn");
+       const form=document.querySelector("form");
+const gifs=document.querySelector("#gif");
+const labelGif=document.querySelector("#gify")
+const sticker=document.querySelector("#sticker");
+       search.addEventListener("keydown",()=>{
+        search.style.backgroundColor="black";
+        search.style.color="white";
+       })
+     
+const gifFinder=()=>{
+   if(gifs.checked==true){     
+      item="gifs"
+   }
+   else if(sticker.checked==true){
+    item="stickers";
+   }
+  
+      search.style.backgroundColor="black";
+     
+      setTimeout(()=>{
+        setup.style.height="auto";
+      },2000);
+      let input=search.value;
+       console.log(input);
+      
+       url=`https://api.giphy.com/v1/${item}/search?api_key=EEwjBmxzoMzdPXMDeR5Vv6OyjpY8YiEF&q=${input}&limit=1000&offset=0&rating=r&lang=en&bundle=clips_grid_picker`;
+       console.log(url);
+      fetch(`https://api.giphy.com/v1/${item}/search?api_key=EEwjBmxzoMzdPXMDeR5Vv6OyjpY8YiEF&q=${input}&limit=1000&offset=0&rating=r&lang=en&bundle=clips_grid_picker`)
+.then((res)=> res.json())
+.then(data=>{
+  console.log(data);
+  const obj=data;
+  
+  const objdata=Object.entries(obj)[0];
+
+  objcon=objdata[1];
+  //  console.log(objcon);
+
+  objcon.forEach(element => {
+      // console.log(element.images.original.url);
+      const gifelem=document.createElement("div");
+      gifelem.classList.add("gifelem");
+      if(item=="stickers"){
+        gifelem.style.background=" none "
+      }
+      const image=new Image(300,300);
+       image.src=element.images.original.url;
+       image.classList.add("images");
+       gifelem.appendChild(image);
+       gif.appendChild(gifelem);
+  });
+  
+})
+.catch(error => console.log('ERROR'))
+      
+    }
+     
+     
+
+
+    button.addEventListener("click",gifFinder);
+     
+    
+    const del=()=>{
+        while(gif.firstChild){
+            gif.removeChild(gif.firstChild);
+        }
+        setup.style.height="100vh";
+     }
+
+     
+    </script>
+
+    </body>
+</html>
+
+
+
